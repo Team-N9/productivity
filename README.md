@@ -20,7 +20,7 @@
 
 This is the repository for *Team9's Productivity App* for CalgaryHacks2021 . 
 
-### Background Information and Hypothesis
+### Background Information
 
 COVID-19 is a global pandemic and represents one of the toughest health challenges in 2020 [[1]](#1).
 
@@ -53,31 +53,19 @@ Once the repository has been downloaded, more effort needs to be done to get the
 
 ### Explanation
 
-1. Extracting FASTQ reads through the `sra-toolkit`.
-    -`fasterq-dump --split-files SRR12960723 -O data`: `fasterq-dump` is a faster way to extract _fastq_ files from the `sra-toolkit`. `--split-files` indicate split reads, and the `-O` flag suggests output to a directory called _data_ 
-    -afterwards, a `cat` is run to append the two paired ends read files together. If successful, remove the individual _fastq_ to save storage space
-
+1. add stuff
 
 ### Demo
 <!-- DEMO  -->
 
-To be noted: 
-
-1. _combined.fasta_ is a _fasta_ file with the combined _fasta_ from all the samples.
-2. _newcombined.fasta_ is another file except all the headers are changed to allow analysis (previously all headers were the same)
-3. A series of _.bam_ files such as _SRR12960723.alignments.sorted.bam_ are the results of the allignment between reads and the reference genome provided.
-4. Within the results folder, there will be two new files
-    - lineage_report.csv which provides a report on the samples and the lineage they were called
-    - covid_histogram.png which provides a visual perspective of the same data in the lineage report
-
-Overall, while lineages A and C were anticipated, most samples were classified as lineage B.1. In other manuscripts, however, the B.1 lineage has also spread to North America, and was noted to start in New York City [[4]](#4)[[5]](#5). This specific lineage contains a specific mutation (D614G) within the Spike protein that has been been linked with higher contagion [[6]](#6). Newer reports seem to indicate that both B.1 and A.3 have also been commonly observed across the United States [[7]](#7). However, as the sample size was only limited to 5, it is difficult to come with definitive conclusions about which lineages are most common in Delaware. As more data is later acquired, more evidence can be brought up and perhaps targeted therapies at specific mutations in specific lineages may arise. 
+We can have demo of app.
 
 ***
 <!-- TEAM -->
 ## Team-members
 
 **Team Member** | **Degree** | **Hobbies** 
------- | ---------- | -------- | ------
+------ | ---------- | ------
 Jeremy Fan | Bioinformatics | Annoying my roommate by cooking instant noodles at 3 AM 
 ***
 
