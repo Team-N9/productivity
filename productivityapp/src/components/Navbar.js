@@ -3,6 +3,7 @@ import {Link, NavLink} from 'react-router-dom';
 import AuthService from '../Services/AuthService';
 import { AuthContext } from '../Context/AuthContext';
 import { Box, Avatar } from '@material-ui/core';
+import '../Styles/nav.css';
 
 const Navbar = props =>{
     const {isAuthenticated,user,setIsAuthenticated,setUser} = useContext(AuthContext);
