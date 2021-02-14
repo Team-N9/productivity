@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useState,  useRef } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -13,6 +13,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Container } from '@material-ui/core';
+import { GlobalContext } from '../Context/GlobalState';
 
 const useStyles = makeStyles((theme) => ({
     timer_container: {
@@ -43,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
   
 
 const Timer = () => {
+    const { addTimer } = useContext(GlobalContext);
     const classes = useStyles();
     const [timer, setTimer] = useState(0)
     const [activity, setActivity] = React.useState('Study')
@@ -50,6 +52,7 @@ const Timer = () => {
     const [canPause, setCanPause] = useState(false)
     const [isComplete, setIsComplete] = useState(false)
     const countRef = useRef(null)
+
 
     const handleChange = (event) => {
         setActivity(event.target.value);
@@ -81,13 +84,25 @@ const Timer = () => {
     }
 
     const handleYes = () => {
+        const newTimer = {
+            name: activity,
+            time: timer
+        }
+        console.log(activity)
+        console.log(timer)
+
+        console.log(newTimer)
+
         setIsComplete(false)
-        
         clearInterval(countRef.current)
         setActivity('Study')
         setIsActive(false)
         setCanPause(false)
         setTimer(0)
+
+        console.log("attempting to add timer...")
+        addTimer(newTimer);
+        console.log("Timer added successfully!")
     }
 
     const handleNo = ( ) => {
@@ -106,13 +121,14 @@ const Timer = () => {
     }
 
     return (
-        <div className= {classes.timer_container}>
+        <div className= {classes.timer_container} display="flex">
             <h3 className={classes.h3}>Timer</h3>
             <InputLabel id="activityName">Name</InputLabel>
             <Select labelId="activityName" 
                 id="select" 
                 value= {activity}
-                onChange= {handleChange} >
+                onChange= {handleChange} 
+            >
                 <MenuItem value="Study">Study</MenuItem>
                 <MenuItem value="Personal Project">Personal Project</MenuItem>
                 <MenuItem value="Misc">Misc</MenuItem>

@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Typography from "@material-ui/core/Typography";
 import { Box, Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import TodoForm from './TodoForm';
 import TodoList from './TodoList';
 import Timer from './Timer';
+import { GlobalContext } from '../Context/GlobalState';
 
 const useStyles = makeStyles((theme) => ({
     root: {

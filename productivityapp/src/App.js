@@ -18,16 +18,19 @@ import theme from './Styles/theme';
 function App() {
 
   return (
-    <ThemeProvider theme={theme}>
-      <Router>
-        {/*<Navbar/>*/}
-        <Route exact path="/" component={Home}/>
-        <UnPrivateRoute path="/register" component={Register}/>
-        <UnPrivateRoute path="/login" component={Login}/>
-        <UnPrivateRoute path="/about" component={About}/>
-        <PrivateRoute path="/profile" component={Profile} />
-      </Router>
-    </ThemeProvider>
+    <GlobalProvider>
+      <ThemeProvider theme={theme}>
+        <Router>
+          <Navbar/>
+          <Route exact path="/" component={Home}/>
+          <UnPrivateRoute path="/register" component={Register}/>
+          <UnPrivateRoute path="/login" component={Login}/>
+          <UnPrivateRoute path="/about" component={About}/>
+          <PrivateRoute path="/profile" component={Profile} />
+        </Router>
+      </ThemeProvider>
+    </GlobalProvider>
+    
     
   );
 }

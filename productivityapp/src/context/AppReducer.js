@@ -18,7 +18,7 @@ export default (state, action) => {
                 ...state,
                 tasks: state.tasks.filter(task => task._id !== action.payload)
             }
-        case 'ADD_RECIPE':
+        case 'ADD_TASK':
             return {
                 ...state,
                 tasks: [...state.tasks, action.payload]
@@ -26,7 +26,23 @@ export default (state, action) => {
         case 'TASK_ERROR':
             return {
                 ...state,
-                recipe: action.payload
+                tasks: action.payload
+            }
+        case 'GET_TIMERS':
+            return {
+                ...state,
+                loading: false,
+                timers: action.payload
+            }
+        case 'ADD_TIMER':
+            return {
+                ...state,
+                timers: [...state.timers, action.payload]
+            }
+        case 'TIMERS_ERROR':
+            return {
+                ...state,
+                timers: action.payload
             }
         default:
             return state;

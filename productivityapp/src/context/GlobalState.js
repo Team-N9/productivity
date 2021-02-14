@@ -30,6 +30,22 @@ export const GlobalProvider = ({ children }) => {
         }
     }
 
+    async function getTimers() {
+        try {
+            const res = await axios.get('/api/timers');
+
+            dispatch({
+                type: 'GET_TIMERS',
+                payload: res.data.data
+            })
+        } catch (err) {
+            dispatch({
+                type: 'TIMER_ERROR',
+                payload: err.response.data.error
+            })
+        }
+    }
+
     async function getTask(id) {
         try {
             const res = await axios.get(`/api/tasks/${id}`);
@@ -70,7 +86,7 @@ export const GlobalProvider = ({ children }) => {
         }
 
         try {
-            const res = await axios.post('/api/recipes', task, config);
+            const res = await axios.post('/api/tasks', task, config);
 
             dispatch({
                 type: 'ADD_TASK',
@@ -84,8 +100,31 @@ export const GlobalProvider = ({ children }) => {
         }
     }
 
+    async function addTimer(timer) {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        try {
+            const res = await axios.post('/api/timers', timer, config);
+
+            dispatch({
+                type: 'ADD_TIMER',
+                payload: res.data.data
+            })
+        } catch (err) {
+            dispatch({
+                type: 'TIMER_ERROR',
+                payload: err.response.data.error
+            })
+        }
+    }
+
     return (<GlobalContext.Provider value = {{
         tasks: state.tasks,
+        timers: state.times,
         task: state.task,
         error: state.error,
         loading: state.loading,
@@ -93,6 +132,8 @@ export const GlobalProvider = ({ children }) => {
         getTask,
         deleteTask,
         addTask,
+        getTimers,
+        addTimer
     }}>
         {children}
     </GlobalContext.Provider>)
