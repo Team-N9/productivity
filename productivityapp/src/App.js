@@ -1,43 +1,23 @@
-import React, { useState } from 'react';
-
-import Login from './components/session/Login';
-import fire from './fire.js';
-
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React from 'react';
+import Navbar from './Components/Navbar';
+import Login from './Components/Login';
+import Home from './Components/Home';
+import Register from './Components/Register';
+import Profile from './Components/Profile';
+import PrivateRoute from './hocs/PrivateRoute';
+import UnPrivateRoute from './hocs/UnPrivateRoute';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
-    fire.auth().onAuthStateChanged((user) => {
-      return user ? setIsLoggedIn(true) : setIsLoggedIn(false);
-  });
-  
-  console.log('logged in?', isLoggedIn);
   return (
-    <div className="App">
-      <Router>
-        
-        {!isLoggedIn
-          ? (
-            <>
-              <Switch>
-                <Route path="/">
-                  <Login />
-                </Route>
-              </Switch>
-            </>
-          ) 
-          : (
-          <span onClick={signOut}>
-            <a href="#">Sign out</a>
-          </span>
-          )}
-      </Router>
-    </div>
+    <Router>
+      <Navbar/>
+      <Route exact path="/" component={Home}/>
+      <UnPrivateRoute path="/register" component={Register}/>
+      <UnPrivateRoute path="/login" component={Login}/>
+      <PrivateRoute path="/profile" component={Profile} />
+    </Router>
   );
 }
-const signOut = () => {
-  fire.auth().signOut()
-};
 
 export default App;
