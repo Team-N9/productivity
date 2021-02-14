@@ -1,7 +1,9 @@
 import React from 'react';
-import React, { Component } from 'react';
-import React, { useState } from 'react';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -43,7 +45,7 @@ const Timer = () => {
     }
 
     const handleComplete = () => {
-        if (activity.length == 0) {
+        if (activity.length == 0){
             
         } else {
             
@@ -75,7 +77,7 @@ const Timer = () => {
 
     return (
         <div className="Actitivity Timer">
-            <h3>Timerh</h3>
+            <h3>Timer</h3>
             <InputLabel id="activityName">Name</InputLabel>
             <Select labelId="activityName" 
                 id="select" 
@@ -98,8 +100,7 @@ const Timer = () => {
                 </div>
             </div>
             <Dialog
-                open={open}
-                onClose={handleClose}
+                open={isComplete}
                 aria-labelledby="confirm-dialog-title"
                 aria-describedby="confirm-dialog-description"
             >
