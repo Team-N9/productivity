@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 import AuthService from '../Services/AuthService';
 import { AuthContext } from '../Context/AuthContext';
 
@@ -15,25 +15,42 @@ const Navbar = props =>{
         });
     }
 
-    const unauthenticatedNavBar = ()=>{
+    const unauthenticatedNavBar = ()=> {
         return (
-            <>
-                <Link to="/">
-                    <li className="nav-item nav-link">
-                        Home
-                    </li>
-                </Link>  
-                <Link to="/login">
-                    <li className="nav-item nav-link">
-                        Login
-                    </li>
-                </Link>  
-                <Link to="/register">
-                    <li className="nav-item nav-link">
-                        Register
-                    </li>
-                </Link>  
-            </>
+            <header className="bg-red-600">
+                <div className="container mx-auto flex justify-between">
+                    <nav className="flex">
+                        {/* <NavLink to="/" exact activeClassName="text-white" className="inflex-flex items center py-3 px-3 mr-4 text-red-100 hover:text-green-800 text-4xl font-bold cursive tracking-widest">
+                            Home
+                        </NavLink>
+                        <NavLink to="/Login" className="inflex-flex items center py-3 px-3 mr-6 rounded text-red-200 hover:text-green-800" >
+                            Login
+                        </NavLink>
+                        
+                        <NavLink to="/register" className="inflex-flex items center py-3 px-3 mr-6 rounded text-red-200 hover:text-green-800" >
+                            Register
+                        </NavLink>
+                        <NavLink to="/about"  className="inflex-flex items center py-3 px-3 mr-6 rounded text-red-200 hover:text-green-800" >
+                            About Us
+                        </NavLink> */}
+                        <NavLink to="/" exact activeClassName="text-white" className="inflex-flex items center py-3 px-3 mr-4 text-red-100 hover:text-green-800 text-4xl font-bold cursive tracking-widest">
+                                    Home
+                        </NavLink>  
+                        <NavLink to="/login" className="nav-item nav-link inflex-flex items center py-3 px-3 mr-6 rounded text-red-200 hover:text-green-800" >
+                                    Login
+                        </NavLink>  
+                        <NavLink to="/register" className="nav-item nav-link inflex-flex items center py-3 px-3 mr-6 rounded text-red-200 hover:text-green-800" >
+                                    Register
+                        </NavLink> 
+                        <NavLink to="/about" className="nav-item nav-link inflex-flex items center py-3 px-3 mr-6 rounded text-red-200 hover:text-green-800" >
+                                    About Us
+                        </NavLink> 
+                    </nav> 
+
+
+                </div>
+
+            </header>
         )
     }
 
