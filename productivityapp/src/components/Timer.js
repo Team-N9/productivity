@@ -60,17 +60,17 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '4rem'
     },
     button: {
-        marginLeft: '1rem'
+        marginLeft: '2rem'
     }
   }));
   
 
   const ColorButton = withStyles((theme) => ({
     root: {
-      color: theme.palette.getContrastText('#be6e6f'),
-      backgroundColor: '#be6e6f',
+      color: theme.palette.getContrastText(purple[500]),
+      backgroundColor: purple[500],
       '&:hover': {
-        backgroundColor: '#ab6163',
+        backgroundColor: purple[700],
       },
     },
   }))(Button);
@@ -160,13 +160,13 @@ const Timer = () => {
                 <div className={classes.timerContent}>
                     <div className='Buttons'>
                         {!isActive && !canPause ?
-                            <ColorButton onClick={handleStart}>Start</ColorButton>
+                            <Button onClick={handleStart}>Start</Button>
                             : (
-                                canPause ? <ColorButton onClick={handlePause}>Pause</ColorButton> :
-                                <ColorButton onClick={handleResume}>Resume</ColorButton>
+                                canPause ? <Button onClick={handlePause}>Pause</Button> :
+                                <Button onClick={handleResume}>Resume</Button>
                             )
                         }
-                        <ColorButton className={classes.button} onClick={handleComplete}>Complete</ColorButton>
+                        <Button className={classes.button} onClick={handleComplete}>Complete</Button>
                     </div>
                 </div>
                 <p className={classes.time}>{formatTime(timer)}</p> 

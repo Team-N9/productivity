@@ -12,7 +12,9 @@ import FlagIcon from '@material-ui/icons/Flag';
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
-    marginBottom: '1rem'
+    marginBottom: '1rem',
+    background: '#be6e6f',
+    color: '#fef9ef'
   },
   avatar: {
     backgroundColor: '#FFCB77',

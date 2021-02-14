@@ -23,14 +23,11 @@ const useStyles = makeStyles((theme) => ({
     large: {
       width: theme.spacing(11),
       height: theme.spacing(11),
-    },
-    userCol: {
-        background: '#037ef3',
-        
+      marginLeft: '25%'
     },
     view: {
         height: '100vh',
-        background: '#037ef3',
+        background: '#227c9d',
         margin: 0
     },
     avBox: {
@@ -47,6 +44,16 @@ const useStyles = makeStyles((theme) => ({
     achBox: {
         paddingRight: '3rem',
         paddingTop: '2rem'
+    },
+    userName: {
+        fontSize: '2rem',
+        paddingBottom: '2rem'
+    },
+    userIcon: {
+        margin: 'auto'
+    },
+    todo: {
+        color: '#ededed'
     }
   }));
 
@@ -92,7 +99,7 @@ export default function Home() {
         <Box className={classes.view} display='flex' flexDirection="row" justifyContent="space-between" >
             <Box display='flex' flexDirection="column">
                 <Box className={classes.avBox}>
-                    <p>User Placeholder</p>
+                    <p class={classes.userName}>Aries Dimaranan</p>
                     <Avatar alt="Place Holder" className={classes.large} src="https://avatars.githubusercontent.com/u/17509638?s=460&u=61d58901ecdd678f84dc21a38a6d7cdebdef2ad3&v=4" />
                 </Box>
                 <Box className={classes.avBox}>
@@ -101,6 +108,7 @@ export default function Home() {
                     </Typography>
                     <TodoForm addTodo={addTodo} />
                     <TodoList
+                        className={classes.todo}
                         todos={todos}
                         removeTodo={removeTodo}
                         toggleComplete={toggleComplete}
