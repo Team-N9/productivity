@@ -1,11 +1,11 @@
 import firebase from 'firebase';
 const firebaseConfig = {
-    apiKey: process.env.API_KEY,
-    authDomain: process.env.AUTH_DOM,
-    projectId: process.env.PROD_ID,
-    storageBucket: process.env.STOR_BUCK,
-    messagingSenderId: process.env.MESSAGE_SEND_ID,
-    appId: process.env.APP_ID
+    apiKey: "AIzaSyBObvVwEVlmIZEL_uGUcMgSnIBnhIwT71U",
+    authDomain: "productivityapp-156c3.firebaseapp.com",
+    projectId: "productivityapp-156c3",
+    storageBucket: "productivityapp-156c3.appspot.com",
+    messagingSenderId: "116791094393",
+    appId: "1:116791094393:web:d77fa1693c0654cb8278a8"
 };
 try {
   firebase.initializeApp(firebaseConfig);

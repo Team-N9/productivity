@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import Login from './components/session/Login';
 import fire from './fire.js';
+import Home from './components/session/Home';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -14,25 +15,22 @@ function App() {
   
   console.log('logged in?', isLoggedIn);
   return (
-    <div className="App">
-      <Router>
+    <Router>
+      <Switch>
         {!isLoggedIn
           ? (
-            <>
-              <Switch>
-                <Route path="/">
-                  <Login />
-                </Route>
-              </Switch>
-            </>
+          <Route path="/">
+            <Login />
+          </Route>
           ) 
           : (
-          <span onClick={signOut}>
-            <a href="#">Sign out</a>
-          </span>
-          )}
-      </Router>
-    </div>
+          <Route path="/">
+            <Home />
+          </Route>
+          )
+        }
+      </Switch>
+    </Router>
   );
 }
 const signOut = () => {
