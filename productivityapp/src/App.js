@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
-
+import { Box } from '@material-ui/core';
 import Login from './components/session/Login';
 import fire from './fire.js';
+import Home from './components/session/Home';
+import { makeStyles } from '@material-ui/core/styles';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+const useStyles = makeStyles((theme) => ({
+  view: {
+    height: '100%'
+  }
+}));
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -14,26 +22,25 @@ function App() {
   
   console.log('logged in?', isLoggedIn);
   return (
-    <div className="App">
+    <Box className="body">
       <Router>
-        
-        {!isLoggedIn
-          ? (
-            <>
-              <Switch>
-                <Route path="/">
-                  <Login />
-                </Route>
-              </Switch>
-            </>
-          ) 
-          : (
-          <span onClick={signOut}>
-            <a href="#">Sign out</a>
-          </span>
-          )}
+        <Switch>
+          {!isLoggedIn
+            ? (
+            <Route path="/">
+              <Login />
+            </Route>
+            ) 
+            : (
+            <Route path="/">
+              <Home />
+            </Route>
+            )
+          }
+        </Switch>
       </Router>
-    </div>
+    </Box>
+    
   );
 }
 const signOut = () => {
