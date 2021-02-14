@@ -20,7 +20,7 @@ function App() {
     <GlobalProvider>
       <ThemeProvider theme={theme}>
         <Router>
-          <Navbar/>
+          {/*<Navbar/>*/}
           <Route exact path="/" component={Home}/>
           <UnPrivateRoute path="/register" component={Register}/>
           <UnPrivateRoute path="/login" component={Login}/>

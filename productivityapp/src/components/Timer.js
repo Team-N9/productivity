@@ -1,11 +1,11 @@
 import React, { useEffect, useContext } from 'react';
 import { useState,  useRef } from 'react';
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-
+import { green, purple } from '@material-ui/core/colors';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -17,7 +17,15 @@ import { GlobalContext } from '../Context/GlobalState';
 
 const useStyles = makeStyles((theme) => ({
     timer_container: {
-        backgroundColor: '#EEEEFF',
+        backgroundColor: '#ffcb77',
+        margin: '0 auto',
+        width: '500px',
+        height: '500px',
+        position: 'relative',
+        borderRadius: '50%',
+      },
+      timer_container_on: {
+        backgroundColor: '#17c3b2',
         margin: '0 auto',
         width: '500px',
         height: '500px',
@@ -29,19 +37,43 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: '8px',
         letterSpacing: '1.2px',
         fontWeight: 500,
+        marginTop: '10%'
       },
     timer_card: {
         position: 'absolute',
         textAlign: 'center',
-        backgroundColor: 'white',
         width: '325px',
         height: '130px',
-        top: '110px',
+        marginTop: '25%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
+        borderRadius: '5%'
       },
+    menu: {
+        marginLeft: '45%',
+        marginTop: '50%'
+    },
+    timerContent: {
+        marginTop: '2rem',
+    },
+    time: {
+        fontSize: '4rem'
+    },
+    button: {
+        marginLeft: '1rem'
+    }
   }));
   
+
+  const ColorButton = withStyles((theme) => ({
+    root: {
+      color: theme.palette.getContrastText('#be6e6f'),
+      backgroundColor: '#be6e6f',
+      '&:hover': {
+        backgroundColor: '#ab6163',
+      },
+    },
+  }))(Button);
 
 const Timer = () => {
     const { addTimer } = useContext(GlobalContext);
@@ -121,31 +153,38 @@ const Timer = () => {
     }
 
     return (
-        <div className= {classes.timer_container} display="flex">
+        <div className= {isActive ? classes.timer_container : classes.timer_container_on} display="flex">
             <h3 className={classes.h3}>Timer</h3>
-            <InputLabel id="activityName">Name</InputLabel>
-            <Select labelId="activityName" 
-                id="select" 
-                value= {activity}
-                onChange= {handleChange} 
-            >
-                <MenuItem value="Study">Study</MenuItem>
-                <MenuItem value="Personal Project">Personal Project</MenuItem>
-                <MenuItem value="Misc">Misc</MenuItem>
-            </Select>
+
             <div className={classes.timer_card}>
-                <p>{formatTime(timer)}</p> 
-                <div className='Buttons'>
-                    {!isActive && !canPause ?
-                        <Button onClick={handleStart}>Start</Button>
-                        : (
-                            canPause ? <Button onClick={handlePause}>Pause</Button> :
-                            <Button onClick={handleResume}>Resume</Button>
-                        )
-                    }
-                <Button onClick={handleComplete}>Complete</Button>
+                <div className={classes.timerContent}>
+                    <div className='Buttons'>
+                        {!isActive && !canPause ?
+                            <ColorButton onClick={handleStart}>Start</ColorButton>
+                            : (
+                                canPause ? <ColorButton onClick={handlePause}>Pause</ColorButton> :
+                                <ColorButton onClick={handleResume}>Resume</ColorButton>
+                            )
+                        }
+                        <ColorButton className={classes.button} onClick={handleComplete}>Complete</ColorButton>
+                    </div>
                 </div>
+                <p className={classes.time}>{formatTime(timer)}</p> 
             </div>
+
+            <div className={classes.menu}>
+                <InputLabel id="activityName">Name</InputLabel>
+                <Select labelId="activityName"
+                    id="select" 
+                    value= {activity}
+                    onChange= {handleChange} 
+                >
+                    <MenuItem value="Study">Study</MenuItem>
+                    <MenuItem value="Personal Project">Personal Project</MenuItem>
+                    <MenuItem value="Misc">Misc</MenuItem>
+                </Select>
+            </div>
+
             <Dialog
                 open={isComplete}
                 aria-labelledby="confirm-dialog-title"
