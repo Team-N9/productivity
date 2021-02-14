@@ -18,13 +18,18 @@ const useStyles = makeStyles((theme) => ({
       width: theme.spacing(11),
       height: theme.spacing(11),
     },
-    userCol: {
-        background: '#037ef3',
-        height: '100%',
-    },
     view: {
-        height: '100%',
+        height: '98vh',
+        width: '98vw',
+        background: '#red'
+    },
+    room: {
+        width: '35vw',
         background: '#037ef3'
+    },
+    appScreen: {
+        width: '65vw',
+        background: 'grey'
     }
   }));
 
@@ -32,21 +37,12 @@ export default function Home() {
     const classes = useStyles();
 
     return (
-        <Box className={classes.view} display='flex' flexDirection="row" justifyContent="space-between" >
-            <Box  display='flex' flexDirection="column" justifyContent="space-evenly">
-                <Box>
-                    <p>User Placeholder</p>
-                    <Avatar alt="Place Holder" className={classes.large} src="https://avatars.githubusercontent.com/u/17509638?s=460&u=61d58901ecdd678f84dc21a38a6d7cdebdef2ad3&v=4" />
-                </Box>
-                <Box>
-                    <Todo />
-                </Box>
+        <Box className={classes.view} display='flex' flexDirection="row">
+            <Box className={classes.room}>
+
             </Box>
-            <Box>
-                Second column
-            </Box>
-            <Box>
-                Third column
+            <Box className={classes.appScreen}>
+
             </Box>
         </Box>
     )

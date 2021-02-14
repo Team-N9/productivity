@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { Box } from '@material-ui/core';
 import Login from './components/session/Login';
 import fire from './fire.js';
 import Home from './components/session/Home';
@@ -22,22 +22,25 @@ function App() {
   
   console.log('logged in?', isLoggedIn);
   return (
-    <Router className={useStyles.view}>
-      <Switch>
-        {!isLoggedIn
-          ? (
-          <Route path="/">
-            <Login />
-          </Route>
-          ) 
-          : (
-          <Route path="/">
-            <Home />
-          </Route>
-          )
-        }
-      </Switch>
-    </Router>
+    <Box className="body">
+      <Router>
+        <Switch>
+          {!isLoggedIn
+            ? (
+            <Route path="/">
+              <Login />
+            </Route>
+            ) 
+            : (
+            <Route path="/">
+              <Home />
+            </Route>
+            )
+          }
+        </Switch>
+      </Router>
+    </Box>
+    
   );
 }
 const signOut = () => {
