@@ -1,0 +1,92 @@
+import React, { useEffect, useState } from 'react';
+import Typography from "@material-ui/core/Typography";
+import { Box, Avatar } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import TodoForm from './TodoForm';
+import TodoList from './TodoList';
+import Timer from './Timer';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+      display: 'flex',
+      '& > *': {
+        margin: theme.spacing(1),
+      },
+    },
+    small: {
+      width: theme.spacing(3),
+      height: theme.spacing(3),
+    },
+    large: {
+      width: theme.spacing(11),
+      height: theme.spacing(11),
+    },
+    userCol: {
+        background: '#037ef3',
+        
+    },
+    view: {
+        height: '98vh',
+        background: '#037ef3',
+        margin: 0
+    },
+    avBox: {
+        
+    }
+  }));
+
+export default function Home() {
+    const classes = useStyles();
+    const [todos, setTodos] = useState([]);
+
+    function addTodo(todo) {
+        // adds new todo to beginning of todos array
+        setTodos([todo, ...todos]);
+      }
+    
+    function toggleComplete(id) {
+        setTodos(
+            todos.map(todo => {
+            if (todo.id === id) {
+                return {
+                ...todo,
+                completed: !todo.completed
+                };
+            }
+            return todo;
+            })
+        );
+    }
+
+    function removeTodo(id) {
+        setTodos(todos.filter(todo => todo.id !== id));
+    }
+
+    return (
+        <Box className={classes.view} display='flex' flexDirection="row" justifyContent="space-between" >
+            <Box className={classes.avBox} display='flex' flexDirection="column">
+                <Box>
+                    <p>User Placeholder</p>
+                    <Avatar alt="Place Holder" className={classes.large} src="https://avatars.githubusercontent.com/u/17509638?s=460&u=61d58901ecdd678f84dc21a38a6d7cdebdef2ad3&v=4" />
+                </Box>
+                <Box>
+                <Typography style={{ padding: 16 }} variant="h3">
+                    Todo List
+                </Typography>
+                <TodoForm addTodo={addTodo} />
+                <TodoList
+                    todos={todos}
+                    removeTodo={removeTodo}
+                    toggleComplete={toggleComplete}
+                />
+                </Box>
+            </Box>
+            <Box display="flex" alignItems="center">
+                <Timer />
+            </Box>
+            <Box>
+                Third column
+            </Box>
+        </Box>
+    )
+}

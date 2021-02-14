@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import fire from '../../fire.js';
+import fire from '../fire.js';
 
 const Login = () => {
     const [email, setEmail] = useState();

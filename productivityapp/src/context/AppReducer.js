@@ -1,4 +1,3 @@
-/* eslint-disable default-case */
 /* eslint-disable import/no-anonymous-default-export */
 export default (state, action) => {
     switch(action.type) {
@@ -19,5 +18,17 @@ export default (state, action) => {
                 ...state,
                 tasks: state.tasks.filter(task => task._id !== action.payload)
             }
+        case 'ADD_RECIPE':
+            return {
+                ...state,
+                tasks: [...state.tasks, action.payload]
+            }
+        case 'TASK_ERROR':
+            return {
+                ...state,
+                recipe: action.payload
+            }
+        default:
+            return state;
     }
 }
