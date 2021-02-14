@@ -1,6 +1,6 @@
 import React, {useState,useContext} from 'react';
 import AuthService from '../Services/AuthService';
-import Message from '../Components/Message';
+import Message from './Message';
 import {AuthContext} from '../Context/AuthContext';
 
 const Login = props=>{

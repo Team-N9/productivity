@@ -6,6 +6,7 @@ import TodoForm from './TodoForm';
 import TodoList from './TodoList';
 import Timer from './Timer';
 import { GlobalContext } from '../Context/GlobalState';
+import { useTransition, animated } from 'react-spring';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -39,6 +40,17 @@ const useStyles = makeStyles((theme) => ({
 export default function Home() {
     const classes = useStyles();
     const [todos, setTodos] = useState([]);
+    const [showTimer, setShowTimer] = useState(false);
+
+    const timerTransitions = useTransition(showTimer, null, {
+        from: { opacity: 0, transform: 'translateX(-100%)' },
+        enter: { opacity: 1, transform: 'translateX(0%)' },
+        leave: { opacity: 0, transform: 'translateX(0%)' }
+    })
+
+    useEffect(() => {
+        setShowTimer(true);
+    }, [])
 
     function addTodo(todo) {
         // adds new todo to beginning of todos array

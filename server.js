@@ -9,12 +9,13 @@ dotenv.config({ path: './config/config.env' });
 connectDB();
 
 const tasks = require('./routes/tasks');
+const timers = require('./routes/timers');
 
 const app = express();
 
 app.use(express.json());
 
-app.use('/api/tasks', tasks);
+app.use('/api/timers', timers);
 
 const PORT = process.env.PORT || 5000;
 
