@@ -37,7 +37,8 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: '8px',
         letterSpacing: '1.2px',
         fontWeight: 500,
-        marginTop: '10%'
+        marginTop: '10%',
+        fontSize: '2rem'
       },
     timer_card: {
         position: 'absolute',
@@ -54,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '50%'
     },
     timerContent: {
-        marginTop: '2rem',
+        marginBottom: '2rem'
     },
     time: {
         fontSize: '4rem'
@@ -67,10 +68,10 @@ const useStyles = makeStyles((theme) => ({
 
   const ColorButton = withStyles((theme) => ({
     root: {
-      color: theme.palette.getContrastText(purple[500]),
-      backgroundColor: purple[500],
+      color: theme.palette.getContrastText('#227c9d'),
+      backgroundColor: '#227c9d',
       '&:hover': {
-        backgroundColor: purple[700],
+        backgroundColor: '#105c9d',
       },
     },
   }))(Button);
@@ -154,19 +155,19 @@ const Timer = () => {
 
     return (
         <div className= {isActive ? classes.timer_container : classes.timer_container_on} display="flex">
-            <h3 className={classes.h3}>Timer</h3>
+            <h3 className={classes.h3}>TIMER</h3>
 
             <div className={classes.timer_card}>
                 <div className={classes.timerContent}>
                     <div className='Buttons'>
                         {!isActive && !canPause ?
-                            <Button onClick={handleStart}>Start</Button>
+                            <ColorButton onClick={handleStart}>Start</ColorButton>
                             : (
-                                canPause ? <Button onClick={handlePause}>Pause</Button> :
-                                <Button onClick={handleResume}>Resume</Button>
+                                canPause ? <ColorButton onClick={handlePause}>Pause</ColorButton> :
+                                <ColorButton onClick={handleResume}>Resume</ColorButton>
                             )
                         }
-                        <Button className={classes.button} onClick={handleComplete}>Complete</Button>
+                        <ColorButton className={classes.button} onClick={handleComplete}>Done</ColorButton>
                     </div>
                 </div>
                 <p className={classes.time}>{formatTime(timer)}</p> 

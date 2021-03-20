@@ -8,6 +8,7 @@ import Timer from './Timer';
 import { GlobalContext } from '../Context/GlobalState';
 import { useTransition, animated } from 'react-spring';
 import Achievement from './Achievement';
+import Card from '@material-ui/core/Card';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -54,6 +55,11 @@ const useStyles = makeStyles((theme) => ({
     },
     todo: {
         color: '#ededed'
+    },
+    userCard: {
+        background: 'rgba(254, 249, 239, 0.35)',
+        margin: '2rem',
+        paddingRight: '2rem'
     }
   }));
 
@@ -97,7 +103,7 @@ export default function Home() {
 
     return (
         <Box className={classes.view} display='flex' flexDirection="row" justifyContent="space-between" >
-            <Box display='flex' flexDirection="column">
+            <Card className={classes.userCard}>
                 <Box className={classes.avBox}>
                     <p class={classes.userName}>Aries Dimaranan</p>
                     <Avatar alt="Place Holder" className={classes.large} src="https://avatars.githubusercontent.com/u/17509638?s=460&u=61d58901ecdd678f84dc21a38a6d7cdebdef2ad3&v=4" />
@@ -114,7 +120,7 @@ export default function Home() {
                         toggleComplete={toggleComplete}
                     />
                 </Box>
-            </Box>
+            </Card>
             <Box display="flex" alignItems="center" className={classes.timerBox}>
                 <Timer />
             </Box>
